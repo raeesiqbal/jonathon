@@ -34,6 +34,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "melbourneventuresecurities.com",
     "www.melbourneventuresecurities.com",
+    "69.49.246.245",
 ]
 
 # Application definition
