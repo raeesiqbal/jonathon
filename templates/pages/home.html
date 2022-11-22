@@ -1,0 +1,785 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+{% block header %}
+<div class="r-offcanvas">
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header d-flex justify-content-end">
+            <button type="button" class="r-btn-close" data-bs-dismiss="offcanvas" aria-label="Close"><i
+                    class="text-white fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="offcanvas-body text-center">
+            <a class="navbar-brand" href="{% url "pages:home" %}">
+                <div class="align-items-center">
+                    <img style="width:140px;" src="{% static 'images/mysite/logo.png' %}" />
+                </div>
+            </a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="px-2 py-1" href="{% url 'pages:home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="px-2 py-1" href="{% url 'pages:service' %}">Our Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="px-2 py-1" href="{% url 'pages:investor' %}">Investor</a>
+                </li>
+                <li class="nav-item">
+                    <a class="px-2 py-1" href="{% url 'pages:career' %}">Careers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="px-2 py-1" href="{% url "pages:about" %}">Contact Us</a>
+                </li>
+                {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="px-2 py-1" href="{% url 'pages:dashboard' %}">Dashboard</a>
+                </li>
+                {% endif %}
+            </ul>
+            {% if not request.user.is_authenticated %}
+            <a class="px-2 py-1" href="{% url "pages:login" %}"><button class="btn-theme ms-lg-auto"><b
+                        class="text-primary">Login</b></button></a>
+            {% else %}
+            <a class="px-2 py-1" href="{% url "pages:logout" %}"><button class="btn-theme ms-lg-auto"><b
+                        class="text-primary">Logout</b></button></a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-expand-lg bg-header-new">
+    <div class="container py-3">
+        <a class="navbar-brand d-lg-none" href="#">
+            <img style="width:140px;" src="{% static 'images/mysite/logo.png' %}" class="logo" alt="">
+        </a>
+        <button class="d-lg-none r-offcanvas-ini" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
+                <li class="nav-item">
+                    <a class="px-2 py-1" href="{% url 'pages:home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="px-2 py-1" href="{% url 'pages:service' %}">Our Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="px-2 py-1" href="{% url 'pages:investor' %}">Investor</a>
+                </li>
+                <li class="nav-item">
+                    <a class="px-2 py-1" href="{% url 'pages:career' %}">Careers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="px-2 py-1" href="{% url "pages:about" %}">Contact Us</a>
+                </li>
+                {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="px-2 py-1" href="{% url 'pages:dashboard' %}">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url "pages:logout" %}" class="px-2 py-1">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a href="{% url "pages:login" %}" class="px-2 py-1">Login</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="header-new container-fluid d-flex align-items-center">
+    <div class="container">
+        <div class="row postion-relative">
+            <div class="d-flex justify-content-center">
+                <img src="{% static 'images/mysite/logo.png' %}" class="r-header-logo img-fluid" alt="">
+            </div>
+            <div style="margin-top:70px;" class="text-center">
+                <h1 style="color:transparent" class="text-center fw-bold">
+                    Home
+                </h1>
+            </div>
+            <div class="ma text-center position-absolute">
+                <img src="{% static 'images/mysite/s.png' %}" class="r-s-logo img-fluid" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock header %}
+{% block main %}
+<div class="container-fluid managed-cards py-5 mt-5 mb-5">
+    <div class="row d-flex px-4 justify-content-center2">
+        <div id="start1" class="start-counter"></div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="container-fluid p-0">
+                <div class="row">
+                    <div class="col-3 d-flex justify-content-center align-items-center">
+                        <i class="fa-solid fa-piggy-bank text-white mb-3 r-icons"></i>
+                    </div>
+                    <div class="col-9">
+                        <div class="container p-0">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="d-flex align-items-baseline text-white">
+                                        <span>$</span>
+                                        <h3 id="counter1" class="counter fw-bold" data-stop="4482.7" data-speed="0.1">
+                                            0
+                                        </h3>
+                                        <span>
+                                            <h3>Billion</h3>
+                                        </span>
+                                        <br />
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <p class="d-flex text-white">
+                                        In the managed funds industry
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="container-fluid p-0">
+                <div class="row">
+                    <div class="col-3 d-flex justify-content-center align-items-center">
+                        <i class="fa-solid fa-hand-holding-heart text-white r-icons"></i>
+                    </div>
+                    <div class="col-9">
+                        <div class="container p-0">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="d-flex align-items-baseline text-white">
+                                        <span>$</span>
+                                        <h3 id="counter2" class="counter fw-bold" data-stop="3430" data-speed="20">
+                                            0
+                                        </h3>
+                                        <span>
+                                            <h3>Billion</h3>
+                                        </span>
+                                        <br />
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <p class="d-flex text-white">
+                                        Invested in superannuation (pension) funds
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="container-fluid p-0">
+                <div class="row">
+                    <div class="col-3 d-flex justify-content-center align-items-center">
+                        <i class="fa-solid fa-boxes-packing text-white r-icons"></i>
+                    </div>
+                    <div class="col-9">
+                        <div class="container p-0">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="d-flex align-items-baseline text-white">
+                                        <span>$</span>
+                                        <h3 id="counter3" class="counter fw-bold" data-stop="476" data-speed="20">
+                                            0
+                                        </h3>
+                                        <span>
+                                            <h3>Billion</h3>
+                                        </span>
+                                        <br />
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <p class="d-flex text-white">
+                                        Invested in public offer (retail) unit trusts
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="container-fluid p-0">
+                <div class="row">
+                    <div class="col-3 d-flex justify-content-center align-items-center">
+                        <i class="fa-solid fa-heart-pulse text-white r-icons"></i>
+                    </div>
+                    <div class="col-9">
+                        <div class="container p-0">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="d-flex align-items-baseline text-white">
+                                        <span>$</span>
+                                        <h3 id="counter4" class="counter fw-bold" data-stop="128" data-speed="200">
+                                            0
+                                        </h3>
+                                        <span>
+                                            <h3>Billion</h3>
+                                        </span>
+                                        <br />
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <p class="d-flex text-white">
+                                        Invested in life insurance corporations
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="container-fluid p-0">
+                <div class="row">
+                    <div class="col-3 d-flex justify-content-center align-items-center">
+                        <i class="fa-solid fa-building-user text-white r-icons"></i>
+                    </div>
+                    <div class="col-9">
+                        <div class="container p-0">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="d-flex align-items-baseline text-white">
+                                        <span>$</span>
+                                        <h3 id="counter5" class="counter fw-bold" data-stop="11.745" data-speed="200">
+                                            0
+                                        </h3>
+                                        <span>
+                                            <h3>Billion</h3>
+                                        </span>
+                                        <br />
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <p class="d-flex text-white">
+                                        Invested in SIV complying investments
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="container-fluid p-0">
+                <div class="row">
+                    <div class="col-3 d-flex justify-content-center align-items-center">
+                        <i class="fa-solid fa-key text-white r-icons"></i>
+                    </div>
+                    <div class="col-9">
+                        <div class="container p-0">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="d-flex align-items-baseline text-white">
+                                        <span>$</span>
+                                        <h3 id="counter6" class="counter fw-bold" data-stop="4086" data-speed="20">
+                                            0
+                                        </h3>
+                                        <span>
+                                            <h3>Billion</h3>
+                                        </span>
+                                        <br />
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <p class="d-flex text-white">
+                                        Total assets under custody as at December 2021
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="container-fluid p-0">
+                <div class="row">
+                    <div class="col-3 d-flex justify-content-center align-items-center">
+                        <i class="fa-solid fa-earth-americas text-white r-icons"></i>
+                    </div>
+                    <div class="col-9">
+                        <div class="container p-0">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="d-flex align-items-baseline text-white">
+                                        <h3 id="counter7" class="counter fw-bold" data-stop="2349" data-speed="20">
+                                            0
+                                        </h3>
+                                        <span>
+                                            <h3>SIV</h3>
+                                        </span>
+                                        <br />
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <p class="d-flex text-white">Visas Granted</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <h3 class="fw-bold text-blue text-center mb-3">
+                We are a leading independent provider of Responsible Entity,
+                Trustee, Corporate Trust, Custody, Fund Administration and Registry
+                Services
+            </h3>
+            <p class="mb-3 text-center">
+                Melbourne Venture Securities is an independent funds management business
+                providing professional fiduciary and administration services to
+                investment managers. We operate multiple licensed entities to act as
+                responsible entity and trustee for registered and unregistered
+                managed investment schemes and are currently responsible for in
+                excess of 300 funds and more than $35 billion across a wide range of
+                underlying asset classes.
+            </p>
+            <p class="mb-3 text-center">
+                Melbourne Venture Securities is also a leading full service securities brokerage registered with the
+                Australian Securities and Investment Commission and a member of the Australian Stock Exchange. We were
+                established for the primary purpose of selling and dealing of Australian equity securities -
+                to then shortly after establishment, expanded our services into
+                into Debt Capital Markets.
+            </p>
+            <p class="mb-3 text-center">
+                Melbourne Venture Securities’ subsidiaries are uniquely positioned to
+                provide investment managers with a complete outsourcing solution or
+                alternatively provide a single service in a personalised and
+                cost-effective manner. Whether you are a boutique fund manager or an
+                established global player, our team has the practical expertise to
+                provide a service that supports your strategic objectives.
+            </p>
+            <p class="mb-3 text-center">
+                Our clients include global listed companies,
+                sovereign wealth funds, banks, insurance companies, pension funds,
+                private equity firms and boutique managers. Melbourne Venture Securities are committed to working
+                alongside and
+                growing, not competing, with our clients.
+            </p>
+        </div>
+    </div>
+</section>
+<section class="mt-3">
+    <div class="container-fluid py-3">
+        <div class="container">
+            <div class="owl-carousel c-two">
+                <div class="item">
+                    <img src="{% static 'images/mysite/home-slider/a.jpeg' %}" class="carusal-two-img" />
+                </div>
+                <div class="item">
+                    <img src="{% static 'images/mysite/home-slider/b.jpeg' %}" class="carusal-two-img" />
+                </div>
+
+                <div class="item">
+                    <img src="{% static 'images/mysite/home-slider/c.jpeg' %}" class="carusal-two-img" />
+                </div>
+                <div class="item">
+                    <img src="{% static 'images/mysite/home-slider/d.jpeg' %}" class="carusal-two-img" />
+                </div>
+                <div class="item">
+                    <img src="{% static 'images/mysite/home-slider/e.jpeg' %}" class="carusal-two-img" />
+                </div>
+                <div class="item">
+                    <img src="{% static 'images/mysite/home-slider/f.jpeg' %}" class="carusal-two-img" />
+                </div>
+                <div class="item">
+                    <img src="{% static 'images/mysite/home-slider/g.jpeg' %}" class="carusal-two-img" />
+                </div>
+
+                <div class="item">
+                    <img src="{% static 'images/mysite/home-slider/h.jpeg' %}" class="carusal-two-img" />
+                </div>
+                <div class="item">
+                    <img src="{% static 'images/mysite/home-slider/i.jpeg' %}" class="carusal-two-img" />
+                </div>
+                <div class="item">
+                    <img src="{% static 'images/mysite/home-slider/j.jpeg' %}" class="carusal-two-img" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="mt-3">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="owl-carousel c-one">
+                <div class="item">
+                    <div class="container">
+                        <div class="row slide slide-1">
+                            <div class="col-12 col-md-6 mt-auto">
+                                <h3 class="fw-bold text-white mb-3">
+                                    Responsible Entity Services
+                                </h3>
+                                <p class="text-white mb-3">
+                                    One of Australia’s leading providers of Responsible Entity
+                                    Services, we operate a number of responsible entities,
+                                    each holding an Australian Financial Services Licence. If
+                                    you require a Responsible Entity for a new registered
+                                    management investment scheme, or a replacement for an
+                                    existing fund, we have the experience and capability to
+                                    assist.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="container">
+                        <div class="row slide slide-2">
+                            <div class="col-12 col-md-6 mt-auto">
+                                <h3 class="fw-bold text-white mb-3">Trustee Services</h3>
+                                <p class="text-white mb-3">
+                                    Members of Melbourne Venture Securities act as a Trustee for in
+                                    excess of 300 unregistered managed investment schemes
+                                    (MIS), and is responsible for in excess of $35 billion of
+                                    assets in registered and unregistered trusts. If you
+                                    require a trustee for a wholesale MIS, Melbourne Venture Securities
+                                    is the smart and experienced choice.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="container">
+                        <div class="row slide slide-3">
+                            <div class="col-12 col-md-6 mt-auto">
+                                <h3 class="fw-bold text-white mb-3">
+                                    Corporate Trust Services
+                                </h3>
+                                <p class="text-white mb-3">
+                                    Melbourne Venture Securities’ Corporate Trust business is
+                                    considered one Australia’s leading providers of
+                                    corporate trust services to the financial services
+                                    industry. We provide custody, security trustee note trustee and staff trustee for
+                                    staff share plans to many of Australia’s leading and global banks, funds,
+                                    private equity funds, insurance companies and corporates.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="career-info mt-3">
+    <div class="container">
+        <div class="row" id="who-we-are">
+            <div class="col-12">
+                <h3 class="text-primary fw-bold">
+                    Company Overview
+                </h3>
+                <p class="mb-3">
+                    Established in 2002, Melbourne Venture Securities is a leading independent Australian funds
+                    management
+                    business specialising in responsible entity, trustee, corporate trust and custody services, as well
+                    as
+                    fund administration, registry and corporate secretarial services.
+                </p>
+                <p class="mb-3">
+                    Melbourne Venture Securities specialises in a range of asset classes including real estate,
+                    Bonds, stocks, private equity,
+                    private equity, infrastructure, equities, mortgage and hedge funds.
+                </p>
+                <p class="mb-3">
+                    We work with global and Australian listed companies, sovereign wealth funds, banks, insurance
+                    companies,
+                    pension funds, private equity firms and boutique managers to provide them with a competitive
+                    advantage.
+                </p>
+                <p class="mb-3">
+                    Melbourne Venture Securities is one of the only corporate trustee provider in able to
+                    offer a
+                    one-stop-shop solution to fund managers encompassing responsible entity/trustee, custody, fund
+                    accounting
+                    and registry services.
+                </p>
+                <p class="mb-3">
+                    Melbourne Venture Securities is always looking for suitable new employees.
+                </p>
+
+                <h3 class="text-primary fw-bold">
+                    Our Purpose
+                </h3>
+                <p class="mb-3">
+                    To provide global and domestic investment managers, sovereign wealth funds, insurance groups,
+                    pension
+                    funds and private equity firms with market-leading responsible entity, trustee, custody, fund
+                    administration, registry and company secretarial services either as a complete turn-key solution or
+                    as
+                    discrete services.
+                </p>
+                <h3 class="text-primary fw-bold">
+                    Our Values
+                </h3>
+                <p class="mb-3">
+                    <span><i class="text-primary fa-solid fa-check pe-2"></i></span> <span
+                        class="text-primary fw-bold">Integrity:</span>
+                    We act with integrity in all we do including acting lawfully, ethically and responsibly.
+                </p>
+                <p class="mb-3">
+                    <span><i class="text-primary fa-solid fa-check pe-2"></i></span> <span
+                        class="text-primary fw-bold">Partnership:</span>
+                    We work in true partnership with our clients providing expert guidance not just on how to do things
+                    but
+                    also how they should be done.
+                </p>
+                <p class="mb-3">
+                    <span><i class="text-primary fa-solid fa-check pe-2"></i></span> <span
+                        class="text-primary fw-bold">Exceptional Service:</span>
+                    We are adaptable, agile and decisive providing exceptional service to our clients through experts in
+                    each
+                    service area to maintain our industry-leading service standards.
+                </p>
+                <p class="mb-3">
+                    <span><i class="text-primary fa-solid fa-check pe-2"></i></span> <span
+                        class="text-primary fw-bold">Passionate:</span>
+                    We are committed to being always passionate and enthusiastic about our clients’ affairs.
+                </p>
+                <p class="mb-3">
+                    <span><i class="text-primary fa-solid fa-check pe-2"></i></span> <span
+                        class="text-primary fw-bold">Diverse:</span>
+                    We embrace our diverse backgrounds, experiences and perspectives working together to deliver
+                    superior
+                    outcomes.
+                </p>
+                <p class="mb-3">
+                    <span><i class="text-primary fa-solid fa-check pe-2"></i></span> <span
+                        class="text-primary fw-bold">Open:</span>
+                    We encourage everyone to speak-up about the things that matter.
+                </p>
+                <h3 class="text-primary fw-bold">
+                    Our Value Proposition
+                </h3>
+                <p class="mb-3">
+                    <span><i class="text-primary fa-solid fa-check pe-2"></i></span>
+                    We offer both comprehensive and turnkey solutions
+                </p>
+                <p class="mb-3">
+                    <span><i class="text-primary fa-solid fa-check pe-2"></i></span>
+                    We are committed to delivering a personalised and responsive service to accommodate clients’ unique
+                    needs
+                </p>
+                <p class="mb-3">
+                    <span><i class="text-primary fa-solid fa-check pe-2"></i></span>
+                    We employ experts in each service area to maintain our industry-leading service standards
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="mt-3">
+    <div class="container" id="managed-cards-outer">
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-3 p-3">
+                <div class="managed-cards text-center p-4">
+                    <i class="fa-solid fa-comments-dollar text-white mb-3 r-icons"></i>
+                    <div class="animated-border col-12 text-center">
+                        <h5 class="text-white mb-3">Cash/Credit Funds</h5>
+                    </div>
+                    <p class="text-white text-center">
+                        A cash fund is a managed investment scheme that aims to provide
+                        competitive returns investing in low-risk, high liquidity cash
+                        or cash equivalents such as short-term government bonds or bank
+                        bills. The underlying component of a credit fund is that the
+                        fund is taking a view on exposure to certain counterparties’
+                        credit. Schemes can be registered or unregistered.
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3 p-3">
+                <div class="managed-cards text-center p-4">
+                    <i class="fa-solid fa-laptop text-white mb-3 r-icons"></i>
+                    <div class="animated-border col-12 text-center">
+                        <h5 class="text-white mb-3">Equity Funds</h5>
+                    </div>
+                    <p class="text-white text-center">
+                        Invest primarily in equities or companies which can be listed or
+                        unlisted. Equity funds can have a focus on sector, geography or
+                        market capitalisation or can be diversified. Managed funds, also
+                        known as unit trusts, allow investors to pool their money with
+                        others, thus enabling them to invest in assets and markets that
+                        may be difficult to access individually.
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3 p-3">
+                <div class="managed-cards text-center p-4">
+                    <i class="fa-brands fa-react text-white mb-3 r-icons"></i>
+                    <div class="animated-border col-12 text-center">
+                        <h5 class="text-white mb-3">Funds of Funds</h5>
+                    </div>
+                    <p class="text-white text-center">
+                        A fund of funds, also referred to as a multi-manager investment,
+                        deploys capital across a portfolio of underlying funds rather
+                        than investing directly into assets such as equities, bonds,
+                        infrastructure or real estate. More simply, a fund of funds is
+                        any fund that pools capital and utilises the expertise of two or
+                        more sub managers to invest that capital.
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3 p-3">
+                <div class="managed-cards text-center p-4">
+                    <i class="fa-solid fa-hotel text-white mb-3 r-icons"></i>
+                    <div class="animated-border col-12 text-center">
+                        <h5 class="text-white mb-3">Property Funds</h5>
+                    </div>
+                    <p class="text-white text-center">
+                        A managed fund that invests in real estate assets that may
+                        otherwise be too expensive for investors to invest in directly.
+                        The investment strategy is typically yield, capital growth,
+                        development or a combination of these. Investments can be made
+                        in a single property or a portfolio of properties and can be
+                        commercial, retail industrial or residential real estate.
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3 p-3">
+                <div class="managed-cards text-center p-4">
+                    <i class="fa-solid fa-piggy-bank text-white mb-3 r-icons"></i>
+                    <div class="animated-border col-12 text-center">
+                        <h5 class="text-white mb-3">Income Funds</h5>
+                    </div>
+                    <p class="text-white text-center">
+                        An income fund is a managed investment scheme that seeks to
+                        generate an income stream by investing into assets that pay
+                        dividends or make interest payments, rather than generate
+                        capital appreciation. The funds can be invested into a broad
+                        range of investments including bonds, equities, hybrids, cash or
+                        even real estate investment Trusts (REITs).
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3 p-3">
+                <div class="managed-cards text-center p-4">
+                    <i class="fa-solid fa-magnifying-glass-chart text-white mb-3 r-icons"></i>
+                    <div class="animated-border col-12 text-center">
+                        <h5 class="text-white mb-3">Infrastructure Funds</h5>
+                    </div>
+                    <p class="text-white text-center">
+                        An infrastructure fund is an investment scheme that invests
+                        primarily in facilities and utilities that provide essential
+                        services to communities. These characteristics generally result
+                        in less volatile earnings. Assets include airports, toll roads,
+                        seaports, railways, hospitals, education facilities, water
+                        supply, gas and electricity & telecommunications facilities.
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3 p-3">
+                <div class="managed-cards text-center p-4">
+                    <i class="fa-solid fa-people-group text-white mb-3 r-icons"></i>
+                    <div class="animated-border col-12 text-center">
+                        <h5 class="text-white mb-3">Private Equity Funds</h5>
+                    </div>
+                    <p class="text-white text-center">
+                        Private equity funds are managed investment schemes that
+                        normally invest in private, non-publicly traded companies and
+                        businesses. Typically, the fund will be structured as a unit
+                        trust or limited partnership that raises capital from
+                        institutional and sophisticated investors and sometimes retail
+                        investors, which is used to buy equity interests in companies.
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3 p-3">
+                <div class="managed-cards text-center p-4">
+                    <i class="fa-regular fa-heart text-white mb-3 r-icons"></i>
+                    <div class="animated-border col-12 text-center">
+                        <h5 class="text-white mb-3">Social Impact Funds</h5>
+                    </div>
+                    <p class="text-white text-center">
+                        Managed investment schemes that make investments that create
+                        positive and measurable social or environmental change alongside
+                        appropriate financial returns. Investments can be made into
+                        companies, organisations or funds, whether they be
+                        not-for-profit or for-profit. Investments in this space can
+                        include property, infrastructure, corporations or private
+                        equity.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="mt-3">
+    <div class="container-fluid py-4">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-12 col-md-2 d-flex justify-content-center align-items-center">
+                <img src="https://www.oneinvestment.com.au/wp-content/uploads/2021/07/1519881168106-e1627527047320.png"
+                    class="img-fluid" alt="" />
+            </div>
+            <div class="col-12 col-md-2 d-flex justify-content-center align-items-center">
+                <img src="https://www.oneinvestment.com.au/wp-content/uploads/2021/07/AIC_Logo_Tagline_POS_RGB-300x139.png"
+                    class="img-fluid" alt="" />
+            </div>
+            <div class="col-12 col-md-2 d-flex justify-content-center align-items-center">
+                <img src="https://www.oneinvestment.com.au/wp-content/uploads/2021/07/s5_logo-300x97.png"
+                    class="img-fluid" alt="" />
+            </div>
+            <div class="col-12 col-md-2 d-flex justify-content-center align-items-center">
+                <img src="https://www.oneinvestment.com.au/wp-content/uploads/2021/07/logoBFSLA.png" class="img-fluid"
+                    alt="" />
+            </div>
+            <div class="col-12 col-md-2 d-flex justify-content-center align-items-center">
+                <img src="https://www.oneinvestment.com.au/wp-content/uploads/2021/10/FSC-logo-300x142.png"
+                    class="img-fluid" alt="" />
+            </div>
+        </div>
+    </div>
+</section>
+<section class="mt-3 mb-5">
+    <div class="container">
+        <div class="row min-h-100 d-flex align-items-center">
+            <div class="col-12 col-md-6 p-3">
+                <div>
+                    <h5 class="fw-bold">Melbourne</h5>
+                </div>
+                <div class="location-outer col-12 p-3">
+                    <div class="location-inner-border py-5 px-3">
+                        <h3 class="text-black mb-3">Melbourne OFFICE</h3>
+                        <p class="mb-3">
+                            <span>
+                                <i class="fa-solid fa-house-user pe-2 text-large h4"></i>
+                            </span>
+                            Nauru House
+                            Floor 48
+                            109 Little Collins St
+                            Melbourne VIC 3000
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 d-flex justify-content-center">
+                <img style="width:60%" src="{% static 'images/mysite/gtm.jpg' %}" alt="sydney" class="img-fluid" />
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock main %}

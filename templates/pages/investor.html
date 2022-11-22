@@ -1,0 +1,279 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %} Investor {% endblock title %}
+
+{% block header %}
+<div class="r-offcanvas">
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header d-flex justify-content-end">
+            <button type="button" class="r-btn-close" data-bs-dismiss="offcanvas" aria-label="Close"><i
+                    class="text-white fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="offcanvas-body text-center">
+            <a class="navbar-brand" href="{% url "pages:home" %}">
+                <div class="align-items-center">
+                    <img style="width:140px;" src="{% static 'images/mysite/logo.png' %}" />
+                </div>
+            </a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="px-2 py-1" href="{% url 'pages:home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="px-2 py-1" href="{% url 'pages:service' %}">Our Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="px-2 py-1" href="{% url 'pages:investor' %}">Investor</a>
+                </li>
+                <li class="nav-item">
+                    <a class="px-2 py-1" href="{% url 'pages:career' %}">Careers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="px-2 py-1" href="{% url "pages:about" %}">Contact Us</a>
+                </li>
+                {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="px-2 py-1" href="{% url 'pages:dashboard' %}">Dashboard</a>
+                </li>
+                {% endif %}
+            </ul>
+            {% if not request.user.is_authenticated %}
+            <a class="px-2 py-1" href="{% url "pages:login" %}"><button class="btn-theme ms-lg-auto"><b
+                        class="text-primary">Login</b></button></a>
+            {% else %}
+            <a class="px-2 py-1" href="{% url "pages:logout" %}"><button class="btn-theme ms-lg-auto"><b
+                        class="text-primary">Logout</b></button></a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-expand-lg bg-header-new">
+    <div class="container py-3">
+        <a class="navbar-brand d-lg-none" href="#">
+            <img style="width:140px;" src="{% static 'images/mysite/logo.png' %}" class="logo" alt="">
+        </a>
+        <button class="d-lg-none r-offcanvas-ini" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
+                <li class="nav-item">
+                    <a class="px-2 py-1" href="{% url 'pages:home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="px-2 py-1" href="{% url 'pages:service' %}">Our Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="px-2 py-1" href="{% url 'pages:investor' %}">Investor</a>
+                </li>
+                <li class="nav-item">
+                    <a class="px-2 py-1" href="{% url 'pages:career' %}">Careers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="px-2 py-1" href="{% url "pages:about" %}">Contact Us</a>
+                </li>
+                {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="px-2 py-1" href="{% url 'pages:dashboard' %}">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url "pages:logout" %}" class="px-2 py-1">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a href="{% url "pages:login" %}" class="px-2 py-1">Login</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+<section class="header-new container-fluid d-flex align-items-center">
+    <div class="container">
+        <div class="row postion-relative">
+            <div class="d-flex justify-content-center">
+                <img src="{% static 'images/mysite/logo.png' %}" class="r-header-logo img-fluid" alt="">
+            </div>
+            <div style="margin-top:70px;" class="text-center">
+                <h1 class="text-center text-white fw-bold">
+                    Investor
+                </h1>
+            </div>
+            <div class="ma text-center position-absolute">
+                <img src="{% static 'images/mysite/s.png' %}" class="r-s-logo img-fluid" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock header %}
+
+{% block main %}
+<section class="container mt-4">
+    <div class="row d-flex">
+        <div class="col-12 col-md-7 order-2 order-md-1 margin-investor">
+            <h3 class="text-primary fw-bold mb-3">What is a retail investor?</h3>
+            <p class="mb-3">
+                A
+                retail investor
+                , is a non-professional investor, commonly referred to as an ‘individual
+                investor.’
+            </p>
+            <p class="mb-3">
+                Retail investors typically invest smaller amounts than wholesale, or
+                professional investors.
+            </p>
+            <p class="mb-3">
+                They often use their own personal accounts and invest in stocks, bonds
+                and property funds through brokerage firms, or investment advisories.
+            </p>
+            <p class="mb-3">
+                Essentially, everyone is a retail investor unless they satisfy one of
+                the requirements to be classified as a wholesale investor under the
+                Corporations Act 2001.
+            </p>
+        </div>
+        <div class="col-12 col-md-5 order-1 order-md-2 d-flex jsutify-content-center">
+            <img src="{% static 'images/mysite/investor.jpg' %}" class="img-fluid" alt="" />
+        </div>
+    </div>
+</section>
+<section class="container mt-4">
+    <div class="row d-flex">
+        <div class="col-12 col-md-5 order-1 order-md-2 d-flex jsutify-content-center">
+            <img src="{% static 'images/mysite/investor-2.jpg' %}" class="img-fluid" alt="" />
+        </div>
+        <div class="col-12 col-md-7 order-2 margin-investor">
+            <h3 class="text-primary fw-bold mb-3">What is a wholesale investor?</h3>
+            <p class="mb-3">
+                A
+                wholesale investor
+                is typically a more experienced investor who has the financial resources
+                to access more opportunities and invest in higher quality assets.
+            </p>
+            <p class="mb-3">
+                There are several circumstances in which someone may be considered a
+                wholesale investor under the Corporations Act 2001, with the most common
+                being:
+            </p>
+            <ol class="mb-3">
+                <li>They have net assets of at least $2.5 million; or</li>
+                <li>
+                    They have a gross income for each of the last two financial years of
+                    at least $250,000; or
+                </li>
+                <li>
+                    A person or entity is willing to invest $500,000 or more into the
+                    fund.
+                </li>
+            </ol>
+            <p class="mb-3">
+                In order to verify they meet one of these criteria, investors must
+                obtain an accountant’s certificate stating so.
+            </p>
+        </div>
+    </div>
+</section>
+<section class="container mt-4">
+    <div class="row d-flex">
+        <div class="col-12 col-md-7 order-2 order-md-1 margin-investor">
+            <h3 class="text-primary fw-bold mb-3">
+                What are the key differences between retail and wholesale products?
+            </h3>
+            <p class="mb-3">
+                The primary difference between retail and wholesale products is in the
+                level of compliance involved with each investment.
+                <br />
+                Disclosure requirements and regulations tend to be a lot higher for
+                retail products, with the intention being to provide investors with a
+                greater level of consumer protection.
+                <br />
+                Wholesale products are generally designed to cater to more experienced
+                investors, and as such will usually involve fewer compliance obligations
+                and less regularly requirements under
+                <span class="text-primary">ASIC</span>
+                (The n Securities & Investments Commission).
+                <br />
+                The rationale behind this is that people who are considered wholesale
+                investors are more likely to be able to evaluate interests in a fund
+                without needing the protection of a regulated disclosure statement like
+                a PDS.
+                <br />
+                Some of the notable differences between a retail and wholesale investor
+                include:
+            </p>
+            <ul class="mb-3">
+                <li>
+                    Retail investors will generally receive all the consumer protections
+                    set out in The Future of Financial Advice (FOFA) reforms. This
+                    legislation is intended to provide investors with protection from poor
+                    financial advice whilst ensuring the availability and affordability of
+                    high-quality financial advisors. Wholesale investors will generally
+                    have less protection in these areas.
+                </li>
+                <li>
+                    Retail investors must be provided with a Product Disclosure Statement
+                    (PDS) that includes material on a product’s key features, fees,
+                    commissions, benefits, risks and complaints handling procedures. This
+                    is something a wholesale investor might choose to forgo in favour of a
+                    more simplistic Information Memorandum (IM). These aren’t regulated in
+                    the same way as the PDS and are not governed by specific content
+                    requirements.
+                </li>
+                <li>
+                    ASIC requires funds open to retail investors to meet increased
+                    governance requirements, including an approved constitution and
+                    compliance plan, a mandated net tangible assets requirement, and an
+                    authorisation for licensee on the investment type (amongst others). In
+                    contrast, wholesale investor funds may be able to vary these
+                    requirements as part of the fund deed.
+                </li>
+            </ul>
+        </div>
+        <div class="col-12 col-md-5 order-1 order-md-2 d-flex align-items-center">
+            <img src="{% static 'images/mysite/investor-3.jpg' %}" class="img-fluid" alt="" />
+        </div>
+    </div>
+</section>
+<section class="container mt-4 mb-5">
+    <div class="row d-flex">
+        <div class="col-12 col-md-5 order-1 order-md-2 d-flex jsutify-content-center">
+            <img src="{% static 'images/mysite/investor-4.jpg' %}" class="img-fluid" alt="" />
+        </div>
+        <div class="col-12 col-md-7 order-2 margin-investor">
+            <h3 class="text-primary fw-bold mb-3">Retail vs wholesale managed funds</h3>
+            <p class="mb-3">
+                Retail managed funds
+                are typically available to all investors and will generally involve a
+                lower minimum investment amount. For example, the latest retail fund by
+                Melbourne Venture Securities - MVS Diversified Fund No. 4
+                – has a minimum investment amount of $50,000.
+                <br />
+                As a product targeted to more experienced and high-net worth investors,
+                wholesale funds
+                will often require higher minimum investment amounts, typically in
+                excess of $100,000 per fund, and in some cases as high as $500,000.
+                <br />
+                Whilst open to fewer investors, wholesale investments allow those with
+                the capability and desire to participate in wholesale markets to access
+                a broader and often more complex range of products, often with a higher
+                risk/return profile than retail products.
+                <br />
+                Due to the complex compliance requirements and administrative costs
+                involved with retail funds, many
+                fund managers
+                will only include wholesale products as part of their service offering.
+                <br />
+                For more information on retail vs. wholesale investors and the range of
+                investment opportunities available to each, please contact MVS today. Our friendly team of professionals
+                will be
+                delighted to talk you
+                through the various investment options.
+                <br />
+            </p>
+        </div>
+    </div>
+</section>
+
+{% endblock main %}

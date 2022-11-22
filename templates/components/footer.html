@@ -1,0 +1,24 @@
+{% load static %}
+<footer>
+   <div class="container p-5">
+      <div class="row d-flex align-items-center justify-content-center">
+         <div class="col-12 col-md-6 text-center">
+            <a class="navbar-brand" href="{% url "pages:about" %}">
+               <div class="align-items-center">
+                  <img style="width:200px;" src="{% static 'images/mysite/logo.png' %}" />
+               </div>
+            </a>
+         </div>
+      </div>
+      <div class="row d-flex align-items-center justify-content-center">
+         <img class="footer-s" src="{% static 'images/mysite/s.png' %}" />
+      </div>
+      <div class="row d-flex align-items-center justify-content-center">
+         <div class="col-12 col-md-6 text-center">
+            <div class="text-white">
+               Copyright © 2021 Melbourne Venture Securities Pty Ltd. All rights reserved.
+            </div>
+         </div>
+      </div>
+   </div>
+</footer>

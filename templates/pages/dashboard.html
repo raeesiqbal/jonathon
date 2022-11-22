@@ -1,0 +1,152 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}{{request.user.username}} | Dashboard{% endblock title %}
+{% block header %}
+<div class="r-offcanvas">
+   <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+      <div class="offcanvas-header d-flex justify-content-end">
+         <button type="button" class="r-btn-close" data-bs-dismiss="offcanvas" aria-label="Close"><i
+               class="text-white fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="offcanvas-body text-center">
+         <a class="navbar-brand" href="{% url "pages:home" %}">
+            <div class="align-items-center">
+               <img style="width:140px;" src="{% static 'images/mysite/logo.png' %}" />
+            </div>
+         </a>
+         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+               <a class="px-2 py-1" href="{% url 'pages:home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+               <a class="px-2 py-1" href="{% url 'pages:service' %}">Our Services</a>
+            </li>
+            <li class="nav-item">
+               <a class="px-2 py-1" href="{% url 'pages:investor' %}">Investor</a>
+            </li>
+            <li class="nav-item">
+               <a class="px-2 py-1" href="{% url 'pages:career' %}">Careers</a>
+            </li>
+            <li class="nav-item">
+               <a class="px-2 py-1" href="{% url "pages:about" %}">Contact Us</a>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+               <a class="px-2 py-1" href="{% url 'pages:dashboard' %}">Dashboard</a>
+            </li>
+            {% endif %}
+         </ul>
+         {% if not request.user.is_authenticated %}
+         <a class="px-2 py-1" href="{% url "pages:login" %}"><button class="btn-theme ms-lg-auto"><b
+                  class="text-primary">Login</b></button></a>
+         {% else %}
+         <a class="px-2 py-1" href="{% url "pages:logout" %}"><button class="btn-theme ms-lg-auto"><b
+                  class="text-primary">Logout</b></button></a>
+         {% endif %}
+      </div>
+   </div>
+</div>
+<nav class="navbar navbar-expand-lg bg-header-new">
+   <div class="container py-3">
+      <a class="navbar-brand d-lg-none" href="#">
+         <img style="width:140px;" src="{% static 'images/mysite/logo.png' %}" class="logo" alt="">
+      </a>
+      <button class="d-lg-none r-offcanvas-ini" type="button" data-bs-toggle="offcanvas"
+         data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+         <i class="fa-solid fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
+            <li class="nav-item">
+               <a class="px-2 py-1" href="{% url 'pages:home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+               <a class="px-2 py-1" href="{% url 'pages:service' %}">Our Services</a>
+            </li>
+            <li class="nav-item">
+               <a class="px-2 py-1" href="{% url 'pages:investor' %}">Investor</a>
+            </li>
+            <li class="nav-item">
+               <a class="px-2 py-1" href="{% url 'pages:career' %}">Careers</a>
+            </li>
+            <li class="nav-item">
+               <a class="px-2 py-1" href="{% url "pages:about" %}">Contact Us</a>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+               <a class="px-2 py-1" href="{% url 'pages:dashboard' %}">Dashboard</a>
+            </li>
+            <li class="nav-item">
+               <a href="{% url "pages:logout" %}" class="px-2 py-1">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+               <a href="{% url "pages:login" %}" class="px-2 py-1">Login</a>
+            </li>
+            {% endif %}
+         </ul>
+      </div>
+   </div>
+</nav>
+<section class="header-new container-fluid d-flex align-items-center">
+   <div class="container">
+      <div class="row postion-relative">
+         <div class="d-flex justify-content-center">
+            <img src="{% static 'images/mysite/logo.png' %}" class="r-header-logo img-fluid" alt="">
+         </div>
+         <div style="margin-top:70px;" class="text-center">
+            <h1 class="text-center text-white fw-bold">
+               Dashboard
+            </h1>
+         </div>
+         <div class="ma text-center position-absolute">
+            <img src="{% static 'images/mysite/s.png' %}" class="r-s-logo img-fluid" alt="">
+         </div>
+      </div>
+   </div>
+</section>
+{% endblock header %}
+{% block main %}
+
+<section class="avail-bal">
+   <div class="container">
+      {% if request.user.profile.message_1 %}
+      <div class="row d-flex align-items-center mb-5">
+         <div class="col-12 col-md-12">
+            <h3 class="text-center">
+               {{ request.user.profile.message_1 }}
+            </h3>
+         </div>
+      </div>
+      {% endif %}
+      {% if request.user.profile.message_2 %}
+      <div class="row d-flex align-items-center mb-5">
+         <div class="col-12 col-md-12">
+            <h3 class="text-center">
+               {{ request.user.profile.message_2 }}
+            </h3>
+         </div>
+      </div>
+      {% endif %}
+      {% if request.user.profile.message_3 %}
+      <div class="row d-flex align-items-center mb-5">
+         <div class="col-12 col-md-12">
+            <h3 class="text-center">
+               {{ request.user.profile.message_3 }}
+            </h3>
+         </div>
+      </div>
+      {% endif %}
+      {% if request.user.profile.message_4 %}
+      <div class="row d-flex align-items-center mb-5">
+         <div class="col-12 col-md-12">
+            <h3 class="text-center">
+               {{ request.user.profile.message_4 }}
+            </h3>
+         </div>
+      </div>
+      {% endif %}
+   </div>
+   </div>
+</section>
+{% endblock main %}

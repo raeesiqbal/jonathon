@@ -1,0 +1,6 @@
+# Environments
+/venv
+/users/migrations
+/pages/migrations
+/mysite/migrations
+db.sqlite3

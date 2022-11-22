@@ -1,0 +1,92 @@
+{% load static %}
+{% block header %}
+<div class="r-offcanvas">
+   <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+      <div class="offcanvas-header d-flex justify-content-end">
+         <button type="button" class="r-btn-close" data-bs-dismiss="offcanvas" aria-label="Close"><i
+               class="text-white fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="offcanvas-body text-center">
+         <a class="navbar-brand" href="{% url "pages:about" %}">
+            <div class="align-items-center">
+               <img style="width:140px;" src="{% static 'images/mysite/logo.png' %}" />
+            </div>
+         </a>
+         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+               <a class="px-2 py-1" href="{% url 'pages:home' %}">Home</a>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+               <a class="px-2 py-1" href="{% url 'pages:dashboard' %}">Dashboard</a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+               <a class="px-2 py-1" href="{% url "pages:about" %}">Contact Us</a>
+            </li>
+            <li class="nav-item">
+               <a class="px-2 py-1" href="{% url 'pages:career' %}">Careers</a>
+            </li>
+            <li class="nav-item">
+               <a class="px-2 py-1" href="{% url 'pages:service' %}">Our Services</a>
+            </li>
+         </ul>
+         {% if not request.user.is_authenticated %}
+         <a class="px-2 py-1" href="{% url "pages:login" %}"><button
+               class="btn-theme ms-lg-auto"><b class="text-primary">Login</b></button></a>
+         {% else %}
+         <a class="px-2 py-1" href="{% url "pages:logout" %}"><button
+               class="btn-theme ms-lg-auto"><b class="text-primary">Logout</b></button></a>
+         {% endif %}
+      </div>
+   </div>
+</div>
+<section class="who-main mb-5">
+   <div class="container">
+      <section>
+         <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container border-header">
+               <a class="navbar-brand" href="{% url "pages:about" %}">
+                  <div class="text-center">
+                     <h2 class="text-white m-0 fw-bold">Astute</h2>
+                     <h6 class="text-white text-muted fw-bold">Innovations </h6>
+                  </div>
+               </a>
+               <button class="d-lg-none r-offcanvas-ini" type="button" data-bs-toggle="offcanvas"
+                  data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                  <i class="fa-solid fa-bars"></i>
+               </button>
+               <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                     {% if request.user.is_authenticated %}
+                     <li class="nav-item">
+                        <a class="px-2 py-1" href="{% url 'pages:dashboard' %}">Dashboard</a>
+                     </li>
+                     {% endif %}
+                     <li class="nav-item">
+                        <a class="px-2 py-1" href="{% url "pages:about" %}">Contact Us</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="px-2 py-1" href="{% url 'pages:career' %}">Careers</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="px-2 py-1" href="{% url 'pages:service' %}">Our Services</a>
+                     </li>
+                  </ul>
+                  {% if not request.user.is_authenticated %}
+                  <a class="px-2 py-1" href="{% url "pages:login" %}"><button
+                        class="btn-theme ms-lg-auto"><b class="text-primary">Login</b></button></a>
+                  {% else %}
+                  <a class="px-2 py-1" href="{% url "pages:logout" %}"><button
+                        class="btn-theme ms-lg-auto"><b class="text-primary">Logout</b></button></a>
+                  {% endif %}
+               </div>
+            </div>
+         </nav>
+      </section>
+      <h1 class="text-white d-flex align-items-baseline fw-bold" style="margin-top: 30vh;">
+         ABOUT US
+      </h1>
+   </div>
+</section>
+{% endblock header %}

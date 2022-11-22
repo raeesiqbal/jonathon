@@ -1,0 +1,233 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}Our Services{% endblock title %}
+{% block header %}
+<div class="r-offcanvas">
+   <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+      <div class="offcanvas-header d-flex justify-content-end">
+         <button type="button" class="r-btn-close" data-bs-dismiss="offcanvas" aria-label="Close"><i
+               class="text-white fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="offcanvas-body text-center">
+         <a class="navbar-brand" href="{% url "pages:home" %}">
+            <div class="align-items-center">
+               <img style="width:140px;" src="{% static 'images/mysite/logo.png' %}" />
+            </div>
+         </a>
+         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+               <a class="px-2 py-1" href="{% url 'pages:home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+               <a class="px-2 py-1" href="{% url 'pages:service' %}">Our Services</a>
+            </li>
+            <li class="nav-item">
+               <a class="px-2 py-1" href="{% url 'pages:investor' %}">Investor</a>
+            </li>
+            <li class="nav-item">
+               <a class="px-2 py-1" href="{% url 'pages:career' %}">Careers</a>
+            </li>
+            <li class="nav-item">
+               <a class="px-2 py-1" href="{% url "pages:about" %}">Contact Us</a>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+               <a class="px-2 py-1" href="{% url 'pages:dashboard' %}">Dashboard</a>
+            </li>
+            {% endif %}
+         </ul>
+         {% if not request.user.is_authenticated %}
+         <a class="px-2 py-1" href="{% url "pages:login" %}"><button class="btn-theme ms-lg-auto"><b
+                  class="text-primary">Login</b></button></a>
+         {% else %}
+         <a class="px-2 py-1" href="{% url "pages:logout" %}"><button class="btn-theme ms-lg-auto"><b
+                  class="text-primary">Logout</b></button></a>
+         {% endif %}
+      </div>
+   </div>
+</div>
+<nav class="navbar navbar-expand-lg bg-header-new">
+   <div class="container py-3">
+      <a class="navbar-brand d-lg-none" href="#">
+         <img style="width:140px;" src="{% static 'images/mysite/logo.png' %}" class="logo" alt="">
+      </a>
+      <button class="d-lg-none r-offcanvas-ini" type="button" data-bs-toggle="offcanvas"
+         data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+         <i class="fa-solid fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
+            <li class="nav-item">
+               <a class="px-2 py-1" href="{% url 'pages:home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+               <a class="px-2 py-1" href="{% url 'pages:service' %}">Our Services</a>
+            </li>
+            <li class="nav-item">
+               <a class="px-2 py-1" href="{% url 'pages:investor' %}">Investor</a>
+            </li>
+            <li class="nav-item">
+               <a class="px-2 py-1" href="{% url 'pages:career' %}">Careers</a>
+            </li>
+            <li class="nav-item">
+               <a class="px-2 py-1" href="{% url "pages:about" %}">Contact Us</a>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+               <a class="px-2 py-1" href="{% url 'pages:dashboard' %}">Dashboard</a>
+            </li>
+            <li class="nav-item">
+               <a href="{% url "pages:logout" %}" class="px-2 py-1">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+               <a href="{% url "pages:login" %}" class="px-2 py-1">Login</a>
+            </li>
+            {% endif %}
+         </ul>
+      </div>
+   </div>
+</nav>
+<section class="header-new container-fluid d-flex align-items-center">
+   <div class="container">
+      <div class="row postion-relative">
+         <div class="d-flex justify-content-center">
+            <img src="{% static 'images/mysite/logo.png' %}" class="r-header-logo img-fluid" alt="">
+         </div>
+         <div style="margin-top:70px;" class="text-center">
+            <h1 class="text-center text-white fw-bold">
+               Our Services
+            </h1>
+         </div>
+         <div class="ma text-center position-absolute">
+            <img src="{% static 'images/mysite/s.png' %}" class="r-s-logo img-fluid" alt="">
+         </div>
+      </div>
+   </div>
+</section>
+{% endblock header %}
+{% block main %}
+<section class="mb-5">
+   <div class="container">
+      <div class="row">
+         <div class="col-12 col-md-6 text-center p-3">
+            <i class="fa-regular fa-handshake mb-3 r-icons r-text-theme"></i>
+            <div class="animated-border col-12 text-center">
+               <h5 class="mb-3 text-primary">Responsible Entity Services</h5>
+            </div>
+            <p class="mb-3">
+               Melbourne Venture Securities operates numerous Responsible Entities. Each
+               of these companies holds an n Financial Services Licence
+               and is licensed, pursuant to the Corporations Act, to act as a
+               Responsible Entity for registered managed investment schemes. One
+               Investment Group is one of ’s leading providers of
+               Responsible Entity services.
+            </p>
+         </div>
+         <div class="col-12 col-md-6 text-center p-3">
+            <i class="fa-solid fa-lock mb-3 r-icons r-text-theme"></i>
+            <div class="animated-border col-12 text-center">
+               <h5 class="mb-3 text-primary">Trustee Services</h5>
+            </div>
+            <p class="mb-3">
+               Melbourne Venture Securities’s subsidiaries are authorised by our
+               n Financial Services Licences to act as Trustee to
+               unregistered managed investment schemes. Melbourne Venture Securities
+               comprises an experienced team providing trustee services to a
+               range of clients. Our team has a deep understanding of trust
+               administration across a variety of trust structures and trust
+               assets developed over more than 20 years.
+            </p>
+         </div>
+         <div class="col-12 col-md-6 text-center p-3">
+            <i class="fa-solid fa-briefcase mb-3 r-icons r-text-theme"></i>
+            <div class="animated-border col-12 text-center">
+               <h5 class="mb-3 text-primary">Corporate Governance Services</h5>
+            </div>
+            <p class="mb-3">
+               Melbourne Venture Securities provides a wide range of corporate governance
+               services for entities who require internal corporate compliance
+               management. We are here to help you maintain compliance without
+               the additional cost of permanent compliance staff or the stress of
+               diverting key management resources to compliance tasks.
+            </p>
+         </div>
+         <div class="col-12 col-md-6 text-center p-3">
+            <i class="fa-solid fa-eye mb-3 r-icons r-text-theme"></i>
+            <div class="animated-border col-12 text-center">
+               <h5 class="mb-3 text-primary">Custody Services</h5>
+            </div>
+            <p class="mb-3">
+               We offer a wide range of services to assist in the management and
+               safeguarding of asset portfolios that can be tailored to your
+               needs. Our reputation is built on our specialists within our
+               business and our dedicated client relationship model. As a
+               custodian, we hold legal title to scheme assets, ensuring they are
+               properly segregated from the assets of other trusts.
+            </p>
+         </div>
+         <div class="col-12 col-md-6 text-center p-3">
+            <i class="fa-solid fa-earth-americas mb-3 r-icons r-text-theme"></i>
+            <div class="animated-border col-12 text-center">
+               <h5 class="mb-3 text-primary">Managed Investment Trusts</h5>
+            </div>
+            <p class="mb-3">
+               Melbourne Venture Securities’s subsidiaries are considered the leading
+               providers of trustee and investment management services to Managed
+               Investment Trusts (“MITs”) in . Melbourne Venture Securities
+               provides trustee and investment management services to some of the
+               world’s largest banks, pension funds, private equity firms and
+               insurance companies. Assets within these MITs include real estate,
+               infrastructure and financial assets.
+            </p>
+         </div>
+         <div class="col-12 col-md-6 text-center p-3">
+            <i class="fa-solid fa-map-location-dot mb-3 r-icons r-text-theme"></i>
+            <div class="animated-border col-12 text-center">
+               <h5 class="mb-3 text-primary">Significant Investor Visa Funds</h5>
+            </div>
+            <p class="mb-3">
+               The n Federal Government’s Significant Investor Visa
+               (“SIV”) program allows high net worth individuals to apply for
+               permanent residency in by investing into a complying
+               investment. Melbourne Venture Securities is the largest provider of
+               trustee, custody, administration and registry services to SIV
+               compliant funds in . We assist a wide range of fund
+               managers operate SIV compliant funds including both local and
+               offshore managers.
+            </p>
+         </div>
+         <div class="col-12 col-md-6 text-center p-3">
+            <i class="fa-regular fa-file-zipper mb-3 r-icons r-text-theme"></i>
+            <div class="animated-border col-12 text-center">
+               <h5 class="mb-3 text-primary">Fund Administration</h5>
+            </div>
+            <p class="mb-3">
+               Through its affiliate, Unity Fund Services, Melbourne Venture Securities
+               provides independent fund accounting, administration and tax
+               services to a diverse range of clients, from start ups to
+               established industry heavyweights. Unity Fund Services have a
+               dedicated and qualified team who use the best available technology
+               and systems to deliver accurate and timely information to
+               investment managers.
+            </p>
+         </div>
+         <div class="col-12 col-md-6 text-center p-3">
+            <i class="fa-regular fa-circle-check mb-3 r-icons r-text-theme"></i>
+            <div class="animated-border col-12 text-center">
+               <h5 class="mb-3 text-primary">Registry Services</h5>
+            </div>
+            <p class="mb-3">
+               One Registry Services is a trusted provider of registry services
+               for financial market participants in . As a registrar,
+               One Registry Services offers a comprehensive range of reliable,
+               prompt and cost effective registry solutions to unlisted companies
+               and trusts. Ancillary services include registry management,
+               dividend and distribution payments, AGM services, investor
+               reporting, enquiry management and corporate actions.
+            </p>
+         </div>
+      </div>
+   </div>
+</section>
+{% endblock main %}
