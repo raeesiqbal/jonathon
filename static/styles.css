@@ -374,7 +374,9 @@ footer {
   }
 }
 
-.footer-s {
-  height: 5vh;
-  width: auto;
+@media (min-device-width: 767px) {
+  .footer-s {
+    height: 5vh;
+    width: auto;
+  }
 }
